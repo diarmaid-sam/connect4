@@ -1,9 +1,12 @@
+import numpy as np
 
 class Game:
     def __init__(self, player1, player2, token1, token2):
+        # player names will be established when passed as parameter
         self.player1 = player1
         self.player2 = player2
-        # player names will be established when passed as parameter
+        # initialise this attribute of who's turn as player1
+        self.whoturn = player1
         # their preferred token established when passed as parameter
         self.token1 = token1
         self.token2 = token2
@@ -17,15 +20,28 @@ class Game:
     def showboard(self):
         for i in Game.board:
             # prints the list in a more graphically appealing way
-            print(" | ".join(str(n) for n in i))
+            return (" | ".join(str(n) for n in i))
+
+    def available_place(self):
+        for row in Game.board:
+            places = []
+            places = places.extend(np.argwhere(row = 0))
 
 
 
-    def playerturn(self, myturn):
+
+
+
+    def playerturn(self):
         Game.showboard(self)
-        placement = int(input("1   2   3   4   5   6   7\nPlease input the number you would like to place your token :"))
+        placement = int(input("1   2   3   4   5   6   7\nPlease input the number you would like to place your token : "))
+        # now we need to place the token at the correct index of this list
+        # if self.whoturn == Game.player1:
+
+
 
 
 
 game1 = Game("diarmaid","bob","d","b")
-game1.playerturn("player1")
+game1.playerturn()
+game1.available_places()
