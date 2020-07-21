@@ -54,7 +54,6 @@ class Game:
                 print(colored(f"\n------- You have imputed a value out of range 1-7 -------"
                           f"-------\n\n  -------- Please input an integer value in range 1-7 --------\n",
                           "red"))
-
             else:
                 row_number = -1
                 print(placement)
