@@ -17,9 +17,20 @@ class Game:
     board = np.array([[0, 0, 0, 0, 1, 0, 0],
                       [0, 0, 0, 0, 1, 0, 0],
                       [0, 0, 0, 0, 1, 0, 0],
-                      [0, 0, 0, 0, 1, 0, 0],
+                      [0, 0, 1, 0, 1, 0, 0],
                       [0, 1, 1, 1, 1, 1, 0],
                       [1, 1, 1, 1, 1, 1, 1]])
+
+    def check_turn(self):
+        # counts number of tokens to help determine who's turn it is
+        # (np.count_nonzero will count instances of an element in array)
+        token_count = np.count_nonzero(Game.board != 0)
+        if token_count % 2 == 0:
+            # '%' is modulus; returns remainder. even numbers have no remainder.
+            whosturn = self.player1
+        else:
+            whosturn = self.player2
+        return whosturn
 
     def showboard(self):
         for i in Game.board:
@@ -52,8 +63,8 @@ class Game:
                               "red"))
             except IndexError:
                 print(colored(f"\n------- You have imputed a value out of range 1-7 -------"
-                          f"-------\n\n  -------- Please input an integer value in range 1-7 --------\n",
-                          "red"))
+                              f"-------\n\n  -------- Please input an integer value in range 1-7 --------\n",
+                              "red"))
             else:
                 row_number = -1
                 print(placement)
@@ -70,4 +81,4 @@ class Game:
 
 
 game1 = Game("diarmaid", "bob", "d", "b")
-game1.select_place()
+game1.check_turn()
