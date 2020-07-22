@@ -14,14 +14,19 @@ def checkwinner(board, token, token_place):
     pass
 
 
-fake_list = np.array([[0, 0, 0, 0, 0, 1, 1], [0, 1, 0, 1, 0, 1, 1], [0, 1, 1, 1, 1, 0, 0]])
+
+# ---------------------- Below are the functions for function 'checkwinner' ------------------------ #
+fake_list = np.array([[0, 0, 0, 0, 0, 1, 1],
+                      [1, 1, 0, 1, 0, 1, 1],
+                      [0, 1, 1, 1, 1, 0, 0],
+                      [1, 0, 0, 0, 0, 1, 1],
+                      [1, 1, 0, 1, 0, 1, 1],
+                      [0, 1, 1, 1, 1, 0, 0]])
 
 
 def check_horizontal(board, token, token_place):
     checked_row = board[token_place[0]]
     print(checked_row)
-    connect4_counter = 0
-    element_tracker = 0
     # takes row of the placed token, distinguishes player's tokens from other tokens (marked with 'True')
     player_board_placements = (checked_row == token)
     print(player_board_placements)
@@ -36,11 +41,23 @@ def check_horizontal(board, token, token_place):
 
         if connect4_counter == 4:
             winner = True
-            return winner
-        else:
-            winner = False
+    if winner:
+        return winner
+    else:
+        return False
 
 
+# this function will convert all elements in the same position index in their respective lists (of a 2d array)
+# and store it inside a list
+def convert_vertical_array(board, token_place):
+    position_index = token_place[1]
+    vertical_array = []
+    for i in range(0,6):
+        vertical_array.append(board[i][position_index])
+    return vertical_array
 
-print(check_horizontal(fake_list, 1, (1, 0)))
+convert_vertical_array(fake_list, (0,0))
+
+def check_vertical(board, token, token_place):
+    vertical_array = convert_vertical_array(board, token_place)
 
