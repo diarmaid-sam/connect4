@@ -77,9 +77,9 @@ def check_vertical(board, token, token_place):
 # fake_list = np.array([[0, 0, 0, 0, 0, 1, 1],
 #                       [1, 1, 0, 1, 0, 1, 1],
 #                       [0, 1, 1, 1, 1, 0, 0],
-#                       [1, 0, 1, 0, 0, 1, 1],
+#                       [1, 0, @, 0, 0, 1, 1],
 #                       [1, 1, 0, 1, 0, 0, 1],
-#                       [0, 1, 1, 1, 1, 0, 0]])
+#                       [0, 1, 1, 1, 1, d, 0]])
 
  # (0, 4), if reversed it would equal (0,2) #
  # 0 --> 6, 1 ---> 5, 2 ----> 4, 3 ----> 3 #
@@ -94,6 +94,40 @@ def check_vertical(board, token, token_place):
 # first mini-function to be used again.
 
 # the third will convert the index of element (token_position) to it's reverse counterpart
+#                     e.g.(list , (-3,2)
+
+
 
 def convert_diagonal_array(board, token_place):
+    diagonal_array = []
+    row = token_place[0]
+    index = token_place[1]
+    board = board = board
+    finding_start = True
+    while finding_start:
+        if row == -1 or index == 0:
+            finding_start = False
+        elif index == -1 and row == 0:
+            finding_start = False
+        row += 1
+        index += -1
+    print(board[row][index])
+    diagonal_array.append(board[row][index])
+    finding_end = True
+    while finding_end:
+        print(row, index)
+        print(board[row][index])
+        if row == -6 or index == 6:
+            if len(diagonal_array) >=4:
+                print(diagonal_array)
+                return diagonal_array
+            else:
+                return False
+        else:
+            diagonal_array.append(board[row][index])
+            row +=-1
+            index +=1
 
+    # this is the position in the list where we will add elements to the 'diagonal array'
+
+convert_diagonal_array(fake_list, (-2, 6))

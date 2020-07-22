@@ -81,4 +81,4 @@ class Game:
 
 
 game1 = Game("diarmaid", "bob", "d", "b")
-game1.check_turn()
+game1.select_place()
