@@ -19,7 +19,7 @@ def checkwinner(board, token, token_place):
 fake_list = np.array([[0, 0, 0, 0, 0, 1, 1],
                       [1, 1, 0, 1, 0, 1, 1],
                       [0, 1, 1, 1, 1, 0, 0],
-                      [1, 0, 0, 0, 0, 1, 1],
+                      [1, 0, 1, 0, 0, 1, 1],
                       [1, 1, 0, 1, 0, 1, 1],
                       [0, 1, 1, 1, 1, 0, 0]])
 
@@ -56,8 +56,23 @@ def convert_vertical_array(board, token_place):
         vertical_array.append(board[i][position_index])
     return vertical_array
 
-convert_vertical_array(fake_list, (0,0))
-
 def check_vertical(board, token, token_place):
     vertical_array = convert_vertical_array(board, token_place)
+    # once array is made, the process is very similar to 'check_horizontal' function. Check there for more info.
+    winner = False
+    for element in range(0,3):
+        connect4_counter = 0
+        for i in range(element, element+4):
+            if vertical_array[i] == token:
+                connect4_counter +=1
+
+        if connect4_counter == 4:
+            winner = True
+    if winner:
+        return winner
+    else:
+        return False
+
+check_vertical(fake_list, 1, (0,2))
+
 
