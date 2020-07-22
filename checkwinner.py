@@ -20,10 +20,10 @@ fake_list = np.array([[0, 0, 0, 0, 0, 1, 1],
                       [1, 1, 0, 1, 0, 1, 1],
                       [0, 1, 1, 1, 1, 0, 0],
                       [1, 0, 1, 0, 0, 1, 1],
-                      [1, 1, 0, 1, 0, 1, 1],
+                      [1, 1, 0, 1, 0, 0, 1],
                       [0, 1, 1, 1, 1, 0, 0]])
 
-
+# Function to check for 4 same tokens in a horizontal row #
 def check_horizontal(board, token, token_place):
     checked_row = board[token_place[0]]
     print(checked_row)
@@ -45,7 +45,7 @@ def check_horizontal(board, token, token_place):
         return winner
     else:
         return False
-
+# function(s) to convert vertical elements into a list and check for 4 same tokens in a row #
 
 # this function will convert all elements in the same position index in their respective lists (of a 2d array)
 # and store it inside a list
@@ -73,6 +73,27 @@ def check_vertical(board, token, token_place):
     else:
         return False
 
-check_vertical(fake_list, 1, (0,2))
+# Below is function to check for 4 same tokens in a vertical fashion #
+# fake_list = np.array([[0, 0, 0, 0, 0, 1, 1],
+#                       [1, 1, 0, 1, 0, 1, 1],
+#                       [0, 1, 1, 1, 1, 0, 0],
+#                       [1, 0, 1, 0, 0, 1, 1],
+#                       [1, 1, 0, 1, 0, 0, 1],
+#                       [0, 1, 1, 1, 1, 0, 0]])
 
+ # (0, 4), if reversed it would equal (0,2) #
+ # 0 --> 6, 1 ---> 5, 2 ----> 4, 3 ----> 3 #
+
+# so gotta make 3 mini functions:
+
+# the first will convert the single diagonal (left to right) into a list
+# it will also check if the list has > 3 elements. If not then this list is not used (can't have connect4
+# with a straight which only has 3 spaces
+
+# The second will use the .reverse function to reverse all element places in the board array, allowing for the
+# first mini-function to be used again.
+
+# the third will convert the index of element (token_position) to it's reverse counterpart
+
+def convert_diagonal_array(board, token_place):
 
