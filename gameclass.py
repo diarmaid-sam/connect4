@@ -3,7 +3,7 @@ from termcolor import colored
 
 
 class Game:
-    def __init__(self, player1, player2, token1, token2):
+    def __init__(self, player1, player2, token1, token2, color1, color2):
         # player names will be established when passed as parameter
         self.player1 = player1
         self.player2 = player2
@@ -12,6 +12,8 @@ class Game:
         # their preferred token established when passed as parameter
         self.token1 = token1
         self.token2 = token2
+        self.color1 = color1
+        self.color2 = color2
 
     # the game board which will be directly interacted with by the
     board = np.array([[0, 0, 0, 0, 1, 0, 0],
@@ -32,12 +34,28 @@ class Game:
             whosturn = self.player2
         return whosturn
 
+    def what_token(self, whosturn):
+        token = 0
+        if whosturn == self.player1:
+            token == self.token1
+        else:
+            token == self.token2
+        return token
+
+    def what_color(self, whosturn):
+        current_color = 0
+        if whosturn == self.player1:
+            current_color == self.color1
+        else:
+            current_color == self.color2
+        return current_color
+
     def showboard(self):
         for i in Game.board:
             # prints the list in a more graphically appealing way
             print(" | ".join(str(n) for n in i))
 
-    def select_place(self):
+    def select_and_place(self, token):
         invalid = True
         # Invalid = True prevents the player from exiting the while loop untill they have placed a valid integer
         # while loop takes a valid placement for token. If invalid (i.e. placement in a full column) then it asks
@@ -77,8 +95,11 @@ class Game:
                     else:
                         row_number += -1
                         print("reached")
-                return print(token_place)
 
 
-game1 = Game("diarmaid", "bob", "d", "b")
-game1.select_place()
+                return token_place
+
+
+      #  self.board[token_place[0]][token_place[1]] = token
+
+
