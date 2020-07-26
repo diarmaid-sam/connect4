@@ -32,15 +32,13 @@ def check_connect4(array, token):
     for token_index in range(0, token_count):
         connect4_count = 0
         for i in range(token_index, token_index + 4):
-            print(f"from {token_index} @ {i}")
-            if token_array[token_index]:
+            if token_array[i]:
                 connect4_count += 1
-    print(token_index)
-    print(token_count)
-    if connect4_count == 4:
-        return True
-    elif token_index == (token_count - 1):
-        return False
+                if connect4_count == 4:
+                    return True
+            else:
+                connect4_count = 0
+    return False
 
 
 # Function to check for 4 same tokens in a horizontal row #
@@ -128,7 +126,7 @@ def reverse_token_place(token_place):
 
 def check_diagonal(board, token, token_place):
     diagonal_array = convert_diagonal_array(board, token_place)
-
+    print(diagonal_array)
     if check_connect4(diagonal_array, token):
         print("heheh")
         return True
@@ -136,10 +134,14 @@ def check_diagonal(board, token, token_place):
 
     reversed_token_place = reverse_token_place(token_place)
     diagonal_array = convert_diagonal_array(board, reversed_token_place)
+    print(diagonal_array)
     if check_connect4(diagonal_array, token):
         print("here")
         return True
     else:
         return False
 
-print(check_diagonal(fake_list, 1, (-5, 4)))
+print(check_diagonal(fake_list, 1, (-4, 4)))
+
+
+# REMINDER - MUST REVERSE diagonal_array list !!!
