@@ -3,6 +3,7 @@ import numpy as np
 # here is the final and single function 'checkwinner' which will check for all combinations for connect4 with
 # a given token placement of the player.
 
+
 def checkwinner(board, token, token_place):
     if check_diagonal(board, token, token_place):
         return True
@@ -90,6 +91,7 @@ def convert_diagonal_array(board, token_place):
             diagonal_array.append(board[row][index])
 
     # this is the position in the list where we will add elements to the 'diagonal array'
+
 
 def reverse_token_place(token_place):
     token_index = [6, 5, 4, 3, 2, 1, 0]
