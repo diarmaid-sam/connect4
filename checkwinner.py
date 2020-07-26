@@ -11,7 +11,14 @@ import numpy as np
 # these functions should check all possible combinations from the placed token. This would be more time efficient
 # like much much more time efficient. just pass
 def checkwinner(board, token, token_place):
-    pass
+    if check_diagonal(board, token, token_place):
+        return True
+    elif check_vertical(board, token, token_place):
+        return True
+    elif check_diagonal(board, token, token_place):
+        return True
+    else:
+        return False
 
 
 # ---------------------- Below are the functions for function 'checkwinner' ------------------------ #
@@ -128,20 +135,12 @@ def check_diagonal(board, token, token_place):
     diagonal_array = convert_diagonal_array(board, token_place)
     print(diagonal_array)
     if check_connect4(diagonal_array, token):
-        print("heheh")
         return True
-    print("not here")
-
     reversed_token_place = reverse_token_place(token_place)
-    diagonal_array = convert_diagonal_array(board, reversed_token_place)
+    reversed_array = np.flipud(board)
+    diagonal_array = convert_diagonal_array(reversed_array, reversed_token_place)
     print(diagonal_array)
     if check_connect4(diagonal_array, token):
-        print("here")
         return True
     else:
         return False
-
-print(check_diagonal(fake_list, 1, (-4, 4)))
-
-
-# REMINDER - MUST REVERSE diagonal_array list !!!
