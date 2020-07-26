@@ -1,15 +1,8 @@
 import numpy as np
 
+# here is the final and single function 'checkwinner' which will check for all combinations for connect4 with
+# a given token placement of the player.
 
-# ([  [0, 0, 0, 0, 1, 0, 0],
-#    [0, 0, 0, 0, 1, 0, 0],
-#    [0, 0, 0, 0, 1, 0, 0],
-#    [0, 0, 1, 0, 1, 0, 0],
-#    [0, 1, 1, 1, 1, 1, 0],
-#    [1, 1, 1, 1, 1, 1, 1]     ])
-
-# these functions should check all possible combinations from the placed token. This would be more time efficient
-# like much much more time efficient. just pass
 def checkwinner(board, token, token_place):
     if check_diagonal(board, token, token_place):
         return True
@@ -22,15 +15,8 @@ def checkwinner(board, token, token_place):
 
 
 # ---------------------- Below are the functions for function 'checkwinner' ------------------------ #
-fake_list = np.array([[0, 0, 0, 1, 0, 0, 1],
-                      [1, 1, 0, 1, 1, 0, 1],
-                      [0, 1, 1, 1, 1, 1, 1],
-                      [0, 0, 1, 1, 1, 1, 1],
-                      [1, 0, 0, 1, 0, 1, 1],
-                      [0, 1, 1, 1, 1, 1, 1]])
 
-
-# this is the fundamental function which will check for the connect4 in each instance
+# this is the fundamental function which will check for the connect4 in each instance (once an array is compiled)
 def check_connect4(array, token):
     token_array = [n == token for n in array]
     print(token_array)
@@ -57,7 +43,7 @@ def check_horizontal(board, token, token_place):
 
 # function(s) to convert vertical elements into a list and check for 4 same tokens in a row #
 
-# this function will convert all elements in the same position index in their respective lists (of a 2d array)
+# this function will convert all elements in the same column index in their respective lists (of a 2d array)
 # and store it inside a list
 def convert_vertical_array(board, token_place):
     position_index = token_place[1]
@@ -69,27 +55,11 @@ def convert_vertical_array(board, token_place):
 
 def check_vertical(board, token, token_place):
     vertical_array = convert_vertical_array(board, token_place)
-    # once array is made, the process is very similar to 'check_horizontal' function. Check there for more info.
+    # once array is made, the process is the same for diagonals, verticals and horizontals
     return check_connect4(vertical_array, token)
 
 
 # Below is function to check for 4 same tokens in a vertical fashion #
-
-# (0, 4), if reversed it would equal (0,2) #
-# 0 --> 6, 1 ---> 5, 2 ----> 4, 3 ----> 3 #
-
-# so gotta make 3 mini functions:
-
-# the first will convert the single diagonal (left to right) into a list
-# it will also check if the list has > 3 elements. If not then this list is not used (can't have connect4
-# with a straight which only has 3 spaces
-
-# The second will use the .reverse function to reverse all element places in the board array, allowing for the
-# first mini-function to be used again.
-
-# the third will convert the index of element (token_position) to it's reverse counterpart
-#                     e.g.(list , (-3,2)
-
 
 def convert_diagonal_array(board, token_place):
     diagonal_array = []
@@ -121,10 +91,6 @@ def convert_diagonal_array(board, token_place):
 
     # this is the position in the list where we will add elements to the 'diagonal array'
 
-
-# (0, 4), if reversed it would equal (0,2) #
-# 0 --> 6, 1 ---> 5, 2 ----> 4, 3 ----> 3 #
-
 def reverse_token_place(token_place):
     token_index = [6, 5, 4, 3, 2, 1, 0]
     new_token_place = (token_place[0], token_index.index(token_place[1]))
@@ -137,7 +103,9 @@ def check_diagonal(board, token, token_place):
     if check_connect4(diagonal_array, token):
         return True
     reversed_token_place = reverse_token_place(token_place)
+    # takes the mirror image position of the token position so that the 'convert_diagonal_array' can be reused
     reversed_array = np.flipud(board)
+    # this reverses the order of the array
     diagonal_array = convert_diagonal_array(reversed_array, reversed_token_place)
     print(diagonal_array)
     if check_connect4(diagonal_array, token):
