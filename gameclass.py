@@ -8,7 +8,6 @@ class Game:
         self.player1 = player1
         self.player2 = player2
         # initialise this attribute of who's turn as player1
-        self.whoturn = player1
         # their preferred token established when passed as parameter
         self.token1 = token1
         self.token2 = token2
@@ -16,17 +15,17 @@ class Game:
         self.color2 = color2
 
     # the game board which will be directly interacted with by the
-    board = np.array([[0, 0, 0, 0, 1, 0, 0],
-                      [0, 0, 0, 0, 1, 0, 0],
-                      [0, 0, 0, 0, 1, 0, 0],
-                      [0, 0, 1, 0, 1, 0, 0],
-                      [0, 1, 1, 1, 1, 1, 0],
-                      [1, 1, 1, 1, 1, 1, 1]])
+    board = np.array([["0", "0", "0", "0", "0", "0", "0"],
+                      ["0", "0", "0", "0", "0", "0", "0"],
+                      ["0", "0", "0", "0", "0", "0", "0"],
+                      ["0", "0", "0", "0", "0", "0", "0"],
+                      ["0", "0", "0", "0", "0", "0", "0"],
+                      ["0", "0", "0", "0", "0", "0", "0"]])
 
     def check_turn(self):
         # counts number of tokens to help determine who's turn it is
         # (np.count_nonzero will count instances of an element in array)
-        token_count = np.count_nonzero(Game.board != 0)
+        token_count = np.count_nonzero(Game.board != "0")
         if token_count % 2 == 0:
             # '%' is modulus; returns remainder. even numbers have no remainder.
             whosturn = self.player1
@@ -67,7 +66,7 @@ class Game:
             try:
                 placement = (int(input("\nPlease input the number of the column you would like to place your "
                                        "token : ")) - 1)
-                if Game.board[0][placement] != 0:
+                if Game.board[0][placement] != "0":
                     print(
                         colored(f"\n------- The column you have selected (column {(placement + 1)}) is fully occupied "
                                 f"-------\n\n  -------- Please select another column to place your token "
@@ -83,23 +82,24 @@ class Game:
                 print(colored(f"\n------- You have imputed a value out of range 1-7 -------"
                               f"-------\n\n  -------- Please input an integer value in range 1-7 --------\n",
                               "red"))
+
+            # here we find the co-ordinates of the first available place to put a token for the selected column and
+            # return the coordinates in the tuple 'token_place'
             else:
                 row_number = -1
-                print(placement)
                 for row in Game.board:
-                    if Game.board[row_number, placement] == 0:
+                    if Game.board[row_number, placement] == "0":
                         token_place = (row_number, placement)
-                        print("zero")
                         break
 
                     else:
                         row_number += -1
-                        print("reached")
+            # using 'token_place' do we then place the player's token at the desired coordinates
+            self.board[token_place[0], token_place[1]] = token
+            self.showboard()
+            return print(self.board)
 
 
-                return token_place
 
-
-      #  self.board[token_place[0]][token_place[1]] = token
 
 
