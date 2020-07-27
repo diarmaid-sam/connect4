@@ -1,0 +1,11 @@
+structure to game
+
+assign atributes to game object and make game object
+check whose turn it is in the game
+allow for person to place their choose where to place their token
+they place their token
+meanwhile the color is tailored to their chosen colour
+run checkwinner, to see if their token has won them the game
+if it has, then end the game ,pushing the code out of the while loop
+score counter + 1 for player 1 if you so desire
+ask if they want to play again - if so restart, if not end
