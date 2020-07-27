@@ -5,7 +5,7 @@ import numpy as np
 
 
 def checkwinner(board, token, token_place):
-    if check_diagonal(board, token, token_place):
+    if check_horizontal(board, token, token_place):
         return True
     elif check_vertical(board, token, token_place):
         return True
@@ -19,10 +19,8 @@ def checkwinner(board, token, token_place):
 
 # this is the fundamental function which will check for the connect4 in each instance (once an array is compiled)
 def check_connect4(array, token):
-    token_array = [n == token for n in array]
-    print(token_array)
     token_count = (len(array) - 3)
-    print(token_count)
+    token_array = [n == token for n in array]
     for token_index in range(0, token_count):
         connect4_count = 0
         for i in range(token_index, token_index + 4):
@@ -38,7 +36,6 @@ def check_connect4(array, token):
 # Function to check for 4 same tokens in a horizontal row #
 def check_horizontal(board, token, token_place):
     checked_row = board[token_place[0]]
-    print(checked_row)
     return check_connect4(checked_row, token)
 
 
@@ -101,16 +98,17 @@ def reverse_token_place(token_place):
 
 def check_diagonal(board, token, token_place):
     diagonal_array = convert_diagonal_array(board, token_place)
-    print(diagonal_array)
     if check_connect4(diagonal_array, token):
         return True
     reversed_token_place = reverse_token_place(token_place)
     # takes the mirror image position of the token position so that the 'convert_diagonal_array' can be reused
-    reversed_array = np.flipud(board)
+    reversed_array = np.fliplr(board)
     # this reverses the order of the array
     diagonal_array = convert_diagonal_array(reversed_array, reversed_token_place)
-    print(diagonal_array)
-    if check_connect4(diagonal_array, token):
-        return True
-    else:
+    if not diagonal_array:
         return False
+    else:
+        if check_connect4(diagonal_array, token):
+            return True
+        else:
+            return False

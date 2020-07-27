@@ -18,8 +18,8 @@ class Game:
     board = np.array([["0", "0", "0", "0", "0", "0", "0"],
                       ["0", "0", "0", "0", "0", "0", "0"],
                       ["0", "0", "0", "0", "0", "0", "0"],
-                      ["0", "0", "0", "0", "0", "0", "0"],
-                      ["0", "0", "0", "0", "0", "0", "0"],
+                      ["0", "0", "0", "0", "1", "0", "0"],
+                      ["0", "0", "0", "0", "1", "0", "0"],
                       ["0", "0", "0", "0", "0", "0", "0"]])
 
     def check_turn(self):
@@ -96,8 +96,7 @@ class Game:
                         row_number += -1
             # using 'token_place' do we then place the player's token at the desired coordinates
             self.board[token_place[0], token_place[1]] = token
-            self.showboard()
-            return print(self.board)
+            return [self.board, token_place]
 
 
 

@@ -51,14 +51,14 @@ def get_Game_attributes():
     incorrect_token_len = True
     while incorrect_token_len:
         try:
-            token1 = input(f"\n'{player1}' please enter the token you wish to play with : ")[0]
+            token1 = str(input(f"\n'{player1}' please enter the token you wish to play with : "))[0]
             incorrect_token_len = False
         except IndexError:
             print(colored(f"\n{player1} you have not entered a token. Please try again", "red"))
     incorrect_token_len = True
     while incorrect_token_len:
         try:
-            token2 = input(f"\n'{player2}' please enter the token you wish to play with : ")[0]
+            token2 = str(input(f"\n'{player2}' please enter the token you wish to play with : "))[0]
             incorrect_token_len = False
         except IndexError:
             print(colored(f"\n{player2} you have not entered a token. Please try again", "red"))
