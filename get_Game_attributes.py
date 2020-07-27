@@ -1,11 +1,12 @@
 from gameclass import Game
-from checkwinner import checkwinner
 from termcolor import colored
+
 
 def get_Game_attributes():
     # def __init__(self, player1, player2, token1, token2, color1, color2):
     # Takes a suitable name
-    print(colored("The following will ask for your name, please enter a suitable name which has at least 1 character", "red"))
+    print(colored("The following will ask for your name, please enter a suitable name which has at least 1 character",
+                  "red"))
     incorrect_player_name = True
     while incorrect_player_name:
         player1 = input("Will player1 please enter your name : ")
@@ -45,8 +46,6 @@ def get_Game_attributes():
         except ValueError:
             print(colored("\n--- Please input the a valid colour name from the list above ---", "red"))
 
-
-
     print(colored("\nFor the following please input one character you wish to use to represent your token\n"
                   "---- The first letter you place will represent your token ----", "red"))
     incorrect_token_len = True
@@ -65,5 +64,3 @@ def get_Game_attributes():
             print(colored(f"\n{player2} you have not entered a token. Please try again", "red"))
 
     return Game(player1, player2, token1, token2, color1, color2)
-
-
