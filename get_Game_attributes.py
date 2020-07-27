@@ -62,5 +62,5 @@ def get_Game_attributes():
             incorrect_token_len = False
         except IndexError:
             print(colored(f"\n{player2} you have not entered a token. Please try again", "red"))
-
-    return Game(player1, player2, token1, token2, color1, color2)
+    attributes = (player1, player2,  token1,  token2,   color1,  color2)
+    return attributes

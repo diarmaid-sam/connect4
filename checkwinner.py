@@ -98,8 +98,12 @@ def reverse_token_place(token_place):
 
 def check_diagonal(board, token, token_place):
     diagonal_array = convert_diagonal_array(board, token_place)
-    if check_connect4(diagonal_array, token):
-        return True
+    # i.e. if diagonal array has less than 4 values
+    if not diagonal_array:
+        pass
+    else:
+        if check_connect4(diagonal_array, token):
+            return True
     reversed_token_place = reverse_token_place(token_place)
     # takes the mirror image position of the token position so that the 'convert_diagonal_array' can be reused
     reversed_array = np.fliplr(board)

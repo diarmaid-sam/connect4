@@ -22,6 +22,8 @@ class Game:
                       ["0", "0", "0", "0", "0", "0", "0"],
                       ["0", "0", "0", "0", "0", "0", "0"]])
 
+
+
     def check_turn(self):
         # counts number of tokens to help determine who's turn it is
         # (np.count_nonzero will count instances of an element in array)
